@@ -146,39 +146,104 @@ app.get("/product/:id",async (req,res)=>{
 //     }
 // })
 
+// app.put("/product/:id", async (req,res)=>{
+//     try {
+//         const id = req.params.id;
+//         const updateData = await product.findByIdAndUpdate({
+//             _id : id
+//         },{
+//             $set : {
+//                 price : 600,
+//                 rating : 3
+//             }
+//         },{
+//             new : true
+//         })
+//         if(updateData){
+//             res.status(200).send({
+//                 success : true,
+//                 message : " Single product update successfully ",
+//                 updateData
+//             })
+//         }else {
+//             res.status(404).send({
+//                 success : false,
+//                 message : " Single product not update successfully"
+//             })
+//         }
+//     }catch (error){
+//         res.status(500).send({
+//             success : false,
+//             message : error.message
+//         })
+//     }
+// })
+
+// app.put("/product/:id", async (req,res)=>{
+//     try {
+//         const id = req.params.id;
+//         const updateData = await product.findByIdAndUpdate({
+//             _id : id
+//         },{
+//             $set : {
+//                 price : 600,
+//                 rating : 3
+//             }
+//         },{
+//             new : true
+//         })
+//         if(updateData){
+//             res.status(200).send({
+//                 success : true,
+//                 message : " Single product update successfully ",
+//                 updateData
+//             })
+//         }else {
+//             res.status(404).send({
+//                 success : false,
+//                 message : " Single product not update successfully"
+//             })
+//         }
+//     }catch (error){
+//         res.status(500).send({
+//             success : false,
+//             message : error.message
+//         })
+//     }
+// })
+
 app.put("/product/:id", async (req,res)=>{
     try {
-        const id = req.params.id;
+        const id = req.params.id
         const updateData = await product.findByIdAndUpdate({
             _id : id
         },{
             $set : {
-                price : 600,
-                rating : 3
+             price: 500,
+             rating: 0
             }
         },{
             new : true
         })
-        if(updateData){
+        if (updateData){
             res.status(200).send({
                 success : true,
-                message : " Single product update successfully ",
-                updateData
+                message : "Single product update successfully",
+                data : updateData
             })
-        }else {
+        }else{
             res.status(404).send({
                 success : false,
-                message : " Single product not update successfully"
+                message : " Single product not update successfully "
             })
         }
     }catch (error){
         res.status(500).send({
             success : false,
-            message : error.message
+            message : "Server error"
         })
     }
 })
-
 app.listen(Port, async ()=>{
     console.log(`Server run successfully at http://localhost:${Port}`)
     await connectDB()
